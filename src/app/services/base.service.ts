@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export abstract class BaseService {
+@Injectable({ providedIn: 'root' })
+export class BaseService {
+  private apiUrl = 'https://fakestoreapi.com/products';
 
-  protected constructor() { }
+  constructor(private http: HttpClient) {}
+
+  getProducts(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
 }
