@@ -8,7 +8,7 @@ export class BaseService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getProducts(): Observable<unknown[]> {
+    return this.http.get<unknown[]>(this.apiUrl);
   }
 }

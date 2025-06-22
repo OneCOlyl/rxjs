@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseStore } from "../../store/base.store";
+import { BaseStore } from '../../store/base.store';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-info',
   standalone: false,
   templateUrl: './info.component.html',
-  styleUrl: './info.component.css'
+  styleUrl: './info.component.css',
 })
 export class InfoComponent implements OnInit {
-  protected products: any[] = [];
+  @Input() info: unknown;
+  protected products: unknown[] = [];
 
   constructor(private readonly _store: BaseStore) {}
 
-  ngOnInit() {
-    this._store.products$.pipe().subscribe(products => {this.products = products;});
+  ngOnInit(): void {
+    this._store.products$.pipe().subscribe((products) => {
+      this.products = products;
+    });
   }
 }
