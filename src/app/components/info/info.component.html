@@ -1,8 +1,25 @@
-<div class="container">
-  <h2>Список товаров</h2>
-  <ul>
-    <li *ngFor="let product of products">
-      {{ product.title }} - ${{ product.price }}
-    </li>
-  </ul>
+<div class="info-layout">
+  <div class="info-operators">
+    <h3>Оператор:</h3>
+    <select
+      tuiNativeSelect
+      id="operator-select"
+      [(ngModel)]="selectedOperator"
+      (ngModelChange)="applyOperator()"
+      class="info-select"
+    >
+      <option *ngFor="let op of operators" [value]="op.value">{{ op.name }}</option>
+    </select>
+    <div class="info-operator-desc">
+      {{ operatorDescription }}
+    </div>
+  </div>
+  <div class="info-result">
+    <h2>Результат</h2>
+    <ul>
+      <li *ngFor="let product of resultProducts$ | async">
+        {{ getDisplay(product) }}
+      </li>
+    </ul>
+  </div>
 </div>
